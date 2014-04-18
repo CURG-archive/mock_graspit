@@ -1,0 +1,4 @@
+
+  <launch>
+        <test test-name="integration-tests" name="integration_tests" pkg="graspit_python_node" type="integration_tests.py" />
+  </launch>

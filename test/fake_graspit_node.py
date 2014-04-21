@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 
 from gen_proto import run_recognition_pb2
 from gen_proto import run_recognition_rpcz

@@ -2,19 +2,25 @@
 
 from gen_proto import check_grasp_reachability_pb2
 from gen_proto import run_recognition_pb2
+from gen_proto import execute_grasp_pb2
 
 import roslib.packages
 
-pkg_path = roslib.packages.get_pkg_dir('mock_graspit') + '/test/mock_check_grasp_reachability_requests/'
+pkg_path = roslib.packages.get_pkg_dir('mock_graspit')
 
 
+def build_valid_check_grasp_reachability_request(filename="grasp_proto_5.saved_proto"):
+    file_path = pkg_path + "/test/mock_requests/mock_check_grasp_reachability_requests/" + filename
+    emtpy_request = check_grasp_reachability_pb2.CheckGraspReachabilityRequest()
+    request = _build_request(file_path, emtpy_request)
+    return request
 
 
-def build_mock_check_grasp_reachability_request(filename="grasp_proto_5.saved_proto"):
-    f = open(pkg_path + filename, "rb")
-    check_grasp_request = check_grasp_reachability_pb2.CheckGraspReachabilityRequest()
-    check_grasp_request.ParseFromString(f.read())
-    return check_grasp_request
+def build_invalid_check_grasp_reachability_request(filename="grasp_proto_5.saved_proto"):
+    file_path = pkg_path + "/test/mock_requests/mock_check_grasp_reachability_requests/" + filename
+    emtpy_request = check_grasp_reachability_pb2.CheckGraspReachabilityRequest()
+    request = _build_request(file_path, emtpy_request)
+    return request
 
 
 def build_mock_object_recognition_request():
@@ -22,6 +28,14 @@ def build_mock_object_recognition_request():
     return run_recognition_request
 
 
-def build_mock_execute_grasp_request():
-    pass
+def build_mock_execute_grasp_request(filename="execute_grasp_request3.saved_proto"):
+    file_path = pkg_path + "/test/mock_requests/mock_execute_grasp_requests/" + filename
+    emtpy_request = execute_grasp_pb2.ExecuteGraspRequest()
+    request = _build_request(file_path, emtpy_request)
+    return request
 
+
+def _build_request(file_path, request):
+    f = open(file_path, "rb")
+    request.ParseFromString(f.read())
+    return request

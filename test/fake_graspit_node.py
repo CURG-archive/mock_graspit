@@ -40,9 +40,9 @@ class TestFullPipeline(unittest.TestCase):
         expected_py = -566
         expected_pz = 490
 
-        valid_px = px > expected_px -10 and px < expected_px + 10
-        valid_py = py > expected_py -10 and py < expected_py + 10
-        valid_pz = pz > expected_pz -10 and pz < expected_pz + 10
+        valid_px = px > expected_px -3 and px < expected_px + 3
+        valid_py = py > expected_py -3 and py < expected_py + 3
+        valid_pz = pz > expected_pz -3 and pz < expected_pz + 3
 
         self.assertTrue(valid_px, "py:" + str(py) + " != expected: " + str(expected_py))
         self.assertTrue(valid_py, "py:" + str(py) + " != expected: " + str(expected_py))

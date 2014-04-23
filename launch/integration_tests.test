@@ -1,4 +1,4 @@
 
   <launch>
-        <test test-name="integration-tests" name="integration_tests" pkg="mock_graspit" type="fake_graspit_node.py" />
+        <test test-name="integration-tests" name="integration_tests" pkg="mock_graspit" type="fake_graspit_node.py" time-limit="120.0" />
   </launch>

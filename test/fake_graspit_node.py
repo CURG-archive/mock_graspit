@@ -52,7 +52,7 @@ class TestFullPipeline(unittest.TestCase):
 
         #test object recognition
         request = mock_request_builder.build_mock_object_recognition_request()
-        response = run_recognition_request_stub.run(request, deadline_ms=60000)
+        response = run_recognition_request_stub.run(request, deadline_ms=600000)
 
         names = []
         for found_object in response.foundObjects:

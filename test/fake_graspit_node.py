@@ -14,6 +14,7 @@ import math
 import rpcz
 import unittest
 import rostest
+import rospy
 import mock_request_builder
 
 
@@ -64,12 +65,14 @@ class TestFullPipeline(unittest.TestCase):
         #test reachable check_grasp_reachability request 1:
         request = mock_request_builder.build_valid_check_grasp_reachability_request()
         response = check_grasp_reachability_request_stub.run(request, deadline_ms=10000)
-        self.assertEqual(response, response)
+        print "response:" + str(response)
+        self.assertEqual(response.graspStatus, 0, "expected: 0, got: " + str(response.graspStatus))
 
         #test unreachable check_grasp_reachability request 2:
         request = mock_request_builder.build_invalid_check_grasp_reachability_request()
         response = check_grasp_reachability_request_stub.run(request, deadline_ms=10000)
-        self.assertEqual(response, response)
+        print "response:" + str(response)
+        self.assertEqual(response.graspStatus, 0, "expected: 0, got: " + str(response.graspStatus))
 
         #test execute grasp request
         request = mock_request_builder.build_mock_execute_grasp_request()

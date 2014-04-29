@@ -10,14 +10,14 @@ import roslib.packages
 pkg_path = roslib.packages.get_pkg_dir('mock_graspit')
 
 
-def build_valid_check_grasp_reachability_request(filename="grasp_proto_5.saved_proto"):
+def build_valid_check_grasp_reachability_request(filename="valid_check_grasp_request5.saved_proto"):
     file_path = pkg_path + "/test/mock_requests/mock_check_grasp_reachability_requests/" + filename
     emtpy_request = check_grasp_reachability_pb2.CheckGraspReachabilityRequest()
     request = _build_request(file_path, emtpy_request)
     return request
 
 
-def build_invalid_check_grasp_reachability_request(filename="invalid_check_grasp_request3.saved_proto"):
+def build_invalid_check_grasp_reachability_request(filename="invalid_check_grasp_request6.saved_proto"):
     file_path = pkg_path + "/test/mock_requests/mock_check_grasp_reachability_requests/" + filename
     emtpy_request = check_grasp_reachability_pb2.CheckGraspReachabilityRequest()
     request = _build_request(file_path, emtpy_request)

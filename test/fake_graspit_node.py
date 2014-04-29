@@ -68,13 +68,13 @@ class TestFullPipeline(unittest.TestCase):
         request = mock_request_builder.build_valid_check_grasp_reachability_request()
         response = check_grasp_reachability_request_stub.run(request, deadline_ms=10000)
         print "response:" + str(response)
-        self.assertEqual(response.graspStatus, 1, "expected: 0, got: " + str(response.graspStatus))
+        self.assertEqual(response.graspStatus, 1, "expected: 1, got: " + str(response.graspStatus))
 
         #test unreachable check_grasp_reachability request 2:
-        request = mock_request_builder.build_invalid_check_grasp_reachability_request()
-        response = check_grasp_reachability_request_stub.run(request, deadline_ms=10000)
-        print "response:" + str(response)
-        self.assertEqual(response.graspStatus, 0, "expected: 0, got: " + str(response.graspStatus))
+        # request = mock_request_builder.build_invalid_check_grasp_reachability_request()
+        # response = check_grasp_reachability_request_stub.run(request, deadline_ms=10000)
+        # print "response:" + str(response)
+        # self.assertEqual(response.graspStatus, 0, "expected: 0, got: " + str(response.graspStatus))
 
         # #test execute grasp request
         # request = mock_request_builder.build_mock_execute_grasp_request()

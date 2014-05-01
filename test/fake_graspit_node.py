@@ -60,15 +60,15 @@ class TestFullPipeline(unittest.TestCase):
         for found_object in response.foundObjects:
             names.append(found_object.name)
 
-        # self.assertTrue("gillette_shaving_gel" in names)
-        # self.assertTrue("all" in names)
         self.assertTrue("garnier_shampoo_bottle" in names)
+
 
         #test reachable check_grasp_reachability request 1:
         request = mock_request_builder.build_valid_check_grasp_reachability_request()
         response = check_grasp_reachability_request_stub.run(request, deadline_ms=10000)
         print "response:" + str(response)
         self.assertEqual(response.graspStatus, 1, "expected: 1, got: " + str(response.graspStatus))
+
 
         #test unreachable check_grasp_reachability request 2:
         # request = mock_request_builder.build_invalid_check_grasp_reachability_request()

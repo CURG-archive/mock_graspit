@@ -16,14 +16,22 @@ import unittest
 import rostest
 import rospy
 import mock_request_builder
+from bondpy import bondpy
 
 
 
 class TestFullPipeline(unittest.TestCase):
 
     def test_all(self):
-        rospy.loginfo("starting TestFullPipeline")
+        bond = bondpy.Bond("/GRASPIT_ROS_SERVER", 'fake_graspit_node')
+        bond.start()
+        bond_wait_time = rospy.get_param("BOND_WAIT_TIME",10.0)
+        formed = bond.wait_until_formed(rospy.Duration(bond_wait_time))
+        if not formed:
+            rospy.logerr("Failed to find bond with graspit python node")
+        self.assertTrue(formed)
 
+        rospy.loginfo("starting TestFullPipeline")
         app = rpcz.Application()
         run_recognition_request_stub = run_recognition_rpcz.ObjectRecognitionService_Stub(app.create_rpc_channel("tcp://localhost:5561"))
         check_grasp_reachability_request_stub = check_grasp_reachability_rpcz.CheckGraspReachabilityService_Stub(app.create_rpc_channel("tcp://localhost:5561"))
@@ -54,7 +62,7 @@ class TestFullPipeline(unittest.TestCase):
 
         #test object recognition
         request = mock_request_builder.build_mock_object_recognition_request()
-        response = run_recognition_request_stub.run(request, deadline_ms=1000)
+        response = run_recognition_request_stub.run(request, deadline_ms=10000)
 
         names = []
         for found_object in response.foundObjects:
